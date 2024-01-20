@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { PdToolsSwaggerModule } from './pd-tools-swagger/pd-tools-swagger.module';
 import { RouterModule } from '@nestjs/core';
+import { PdToolsDashboardModule } from './pd-tools-dashboard/pd-tools-dashboard.module';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { RouterModule } from '@nestjs/core';
         children: [
           {
             path: 'dashboard',
-            module: PdToolsSwaggerModule,
+            module: PdToolsDashboardModule,
           },
         ],
       },
