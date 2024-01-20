@@ -37,3 +37,5 @@ lerna-debug.log*
 .idea
 yarn.lock
 dist/*
+package-lock.json
+
