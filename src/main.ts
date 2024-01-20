@@ -4,7 +4,6 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as ip from 'ip';
 import { ValidationPipe } from '@nestjs/common';
-
 const servicePort = 4000;
 
 const apiDocumentationCredentials = {
@@ -21,6 +20,9 @@ async function bootstrap() {
   const httpAdapter = app.getHttpAdapter();
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
+
+  // 钩子侦听器消耗系统资源，因此默认情况下禁用它们。要使用关闭钩子，您必须通过调用enableShutdownHooks()来启用侦听器：
+  app.enableShutdownHooks();
 
   httpAdapter.use('/api-docs', (req, res, next) => {
     function parseAuthHeader(input: string): { name: string; pass: string } {
